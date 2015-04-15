@@ -1,0 +1,38 @@
+body {
+  // padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.nav {
+	li {
+		a {
+			&:hover, &:link, &:active, &:visited, & {
+				color: #000;
+				i.fa {
+					color: #999;
+					&:hover {
+						color: #f66;
+					}
+				}
+			}
+		}
+	}
+}
+
+.btn-check {
+	color: #000;
+	.btn-check-hint {
+		color: #f99;
+	}
+}
+
+.btn-check.btn-danger {
+	color: #fff;
+	.btn-check-hint {
+		color: #f99;
+	}
+}
