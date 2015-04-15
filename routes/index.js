@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var wechat = require('../wechat');
+var wechat = require('../util/wechat');
 
 /* GET home page. */
 router.get('/', function(req, res) {
