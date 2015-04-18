@@ -12,7 +12,7 @@ function inflateTable(data) {
 				'<div class="time"></div>' +
 				'<div class="delete">删除</div>' +
 				'<div class="content">' +
-					((item.username && item.username != "") ? '<span class="content-author">' + item.username + '：</span>' : "") +
+					((dataItem.username && dataItem.username != "") ? '<span class="content-author">' + dataItem.username + '：</span>' : "") +
 					dataItem.content +
 				'</div>' +
 			'</a>' +
