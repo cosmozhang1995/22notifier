@@ -111,7 +111,7 @@ var browseNoteByUid = function(uid, callback) {
 };
 var getNote = function(id, callback) {
 	var conn = getConnection();
-	var query = 'SELECT notify_item.id as nid, notify_item.content as content, notify_item.create_time as create_time, notify_item.exec_time as time, notify_user.id as uid, notify_user.openid as uopenid, notify_user.alias as username  FROM notify_user,notify_item WHERE notify_item.id=' + id;
+	var query = 'SELECT notify_item.id as nid, notify_item.content as content, notify_item.create_time as create_time, notify_item.exec_time as time, notify_user.id as uid, notify_user.openid as uopenid, notify_user.alias as username  FROM notify_user,notify_item WHERE notify_item.user_id = notify_user.id and notify_item.id=' + id;
 	conn.query(query, callback);
 	conn.end();
 };
