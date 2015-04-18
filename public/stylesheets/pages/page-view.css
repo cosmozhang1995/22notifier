@@ -1,0 +1,43 @@
+.notice-viewer {
+  margin: 0 auto;
+  height: auto;
+  padding: 10px;
+}
+.notice-viewer > * {
+  padding: 10px;
+}
+.notice-viewer .notice-viewer-time {
+  font-size: 18px;
+  color: #666;
+}
+.notice-viewer .notice-viewer-time.urgen-1 {
+  color: #FF6666;
+}
+.notice-viewer .notice-viewer-time.urgen-2 {
+  color: #CC9966;
+}
+.notice-viewer .notice-viewer-time.urgen-3 {
+  color: #669966;
+}
+.notice-viewer .notice-viewer-content {
+  font-size: 18px;
+  color: #666;
+  border-top: 1px #eeeeee solid;
+}
+.notice-viewer .notice-viewer-author {
+  font-size: 14px;
+  color: #999;
+  text-align: right;
+  border-top: 1px #eeeeee solid;
+}
+.notice-viewer .notice-viewer-btn-delete {
+  cursor: pointer;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 14px;
+  color: #f00;
+}
+
+/*# sourceMappingURL=page-view.css.map */

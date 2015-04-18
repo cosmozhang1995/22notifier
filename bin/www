@@ -6,6 +6,8 @@ commander.version('0.0.0')
 	.option('-p --port <n>', 'Specify the port', parseInt)
 	.parse(process.argv);
 
+console.log('start server');
+
 // app.set('port', process.env.PORT || 3000);
 app.set('port', commander.port || 3000);
 

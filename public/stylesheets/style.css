@@ -1,8 +1,80 @@
+html, body {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 0px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+p {
+  font-size: 12px;
 }
 
 a {
   color: #00B7FF;
 }
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.alert {
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+}
+.alert.alert-success {
+  background-color: #00FF66;
+  border-color: #009966;
+}
+.alert.alert-warning {
+  background-color: #FFFF66;
+  border-color: #FF9966;
+}
+.alert.alert-error {
+  background-color: #FFCCCC;
+  border-color: #FF6666;
+}
+.alert h1, .alert h2, .alert h3, .alert h4 {
+  color: #333;
+}
+.alert p {
+  color: #999;
+}
+
+@media screen and (max-width: 1280px) {
+  .container {
+    max-width: 980px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

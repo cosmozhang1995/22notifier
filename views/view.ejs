@@ -1,0 +1,18 @@
+<link rel="stylesheet" type="text/css" href="/stylesheets/pages/page-view.css">
+<% if (err) { %>
+<div class="alert alert-error">
+	<h3>发生错误！</h3>
+	<p><%= err %></p>
+</div>
+<% } else { %>
+<div class="notice-viewer">
+	<div class="notice-viewer-time"></div>
+	<div class="notice-viewer-content"></div>
+	<div class="notice-viewer-author"></div>
+	<div class="notice-viewer-btn-delete">删除这条通知</div>
+</div>
+<script type="text/javascript">
+notifyData = JSON.parse(HTMLDecode("<%= JSON.stringify(data) %>"));
+</script>
+<script type="text/javascript" src="/javascripts/pages/page-view.js"></script>
+<% } %>
