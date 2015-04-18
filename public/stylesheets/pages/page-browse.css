@@ -68,6 +68,10 @@
   padding-left: 10px;
   border-left: 1px #eeeeee solid;
 }
+.notify-list li .content .content-author {
+  color: #999;
+  font-weight: bold;
+}
 .notify-list li .delete {
   width: 99px;
   height: 84px;

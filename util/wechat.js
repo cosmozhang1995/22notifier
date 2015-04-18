@@ -68,7 +68,7 @@ var formNoteList = function(result, hint, user) {
 		var item = result[i];
 		if (!item) break;
 		articleList.push({
-			Title: {$t: utils.cdata(formatDateTime(new Date(item.time * 1000)) + '：' + (item.content.substr(0,50)) + ((item.content.length > 50) ? "..." : ""))},
+			Title: {$t: utils.cdata(formatDateTime(new Date(item.time * 1000)) + '：' + (item.content.substr(0,50)) + ((item.content.length > 50) ? "..." : "") + ((item.username && item.username !== "") ? ('——' + item.username) : ""))},
 			// Description: {$t: utils.cdata(item.content.substr(0,50)) + ((item.content.length > 50) ? "..." : "")},
 			// Description: null,
 			// PicUrl: null,

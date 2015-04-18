@@ -66,6 +66,10 @@
 			text-overflow: ellipsis;
 			padding-left: 10px;
 			border-left: 1px #eeeeee solid;
+			.content-author {
+				color: #999;
+				font-weight: bold;
+			}
 		}
 		.delete {
 			width: 99px;
