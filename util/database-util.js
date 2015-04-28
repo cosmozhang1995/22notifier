@@ -61,6 +61,69 @@ var initialize = function() {
 };
 
 
+// Message actions
+var addMessage = function(data) {
+	// Data item format:
+	// -- msgid
+	// -- openid
+	// -- type
+	// -- content
+	// -- timestamp
+	function formatSaveString(obj) {
+		var _msgid = obj.msgid || 0,
+			_openid = obj.openid || "",
+			_type = obj.type || "text",
+			_content = obj.content || "",
+			_timestamp = obj.timestamp || 0;
+		if (!_msgid) return null;
+		if (_openid == "") return null;
+		if (_type == "") return null;
+		return '(' + _msgid + ', "' + _openid + '", "' + _type + '", "' + escape(_content) + '", ' + _timestamp + ')'
+	}
+	// var saveString = '(`msgid`, `openid`, `type`, `content`, `timestamp`) VALUES ';
+	var saveString = null;
+	if ((data instanceof Array) && (data.length > 0)) {
+		var _tmpArr = [];
+		for (var _i = 0; _i < data.length; _i++) {
+			var _saveStr = formatSaveString(data[_i]);
+			if (_saveStr) _tmpArr.push(_saveStr);
+		}
+		saveString = _tmpArr.join(', ');
+	} else if (typeof data === "object") {
+		saveString = formatSaveString(data);
+	}
+	if (saveString) {
+		var conn = getConnection();
+		conn.query('INSERT INTO `notify_message` (`msgid`, `openid`, `type`, `content`, `timestamp`) VALUES ' + saveString, simpleCallback('add message failed'));
+		conn.end();
+	}
+};
+var getMessage = function(where_clause, callback) {
+	var conn = getConnection();
+	conn.query('SELECT * FROM `notify_message` WHERE ' + where_clause, callback);
+	conn.end();
+};
+var getMessageBy = function(conditions, callback) {
+	conditions = conditions || {};
+	var whereClauses = [],
+		whereClause = "";
+	if (conditions['msgid']) whereClauses.push('`msgid` = ' + conditions['msgid']);
+	if (conditions['openid']) whereClauses.push('`openid` = "' + conditions['openid'] + '"');
+	if (conditions['type']) whereClauses.push('`type` = "' + conditions['type'] + '"');
+	if (conditions['time_start']) whereClauses.push('`timestamp` >= "' + conditions['time_start'] + '"');
+	if (conditions['time_end']) whereClauses.push('`timestamp` <= "' + conditions['time_end'] + '"');
+	if (whereClauses.length > 0) whereClause += whereClauses.join(' AND ');
+	else whereClause = "1";
+	getMessage(whereClause, function(err, result) {
+		if (result.length > 0) {
+			for (var i = 0; i < result.length; i++) {
+				result[i].content = unescape(result[i].content);
+			}
+		}
+		callback(err,result);
+	});
+};
+
 // User actions
 var addUser = function(openid) {
 	var conn = getConnection();
@@ -87,6 +150,8 @@ var markUserStatus = function(status, condition, callback) {
 	conn.query('UPDATE `notify_user` SET `status`=' + status + ' WHERE ' + condition, callback);
 	conn.end();
 };
+
+// Note actions
 var addNote = function(content, userid, exec_time, deadline_time, callback) {
 	var conn = getConnection();
 	var create_time = parseInt(new Date().getTime()/1000);
@@ -120,6 +185,8 @@ var deleteNote = function(id, callback) {
 	conn.query('DELETE FROM `notify_item` WHERE `' + 'id' +'`="' + id + '"', callback);
 	conn.end();
 };
+
+// Detailed methods
 var deleteUserById = function(id,callback) {deleteUser(id,'id',callback);};
 var deleteUserByOpenId = function(openid,callback) {deleteUser(openid,'openid',callback);};
 var getUserById = function(id,callback) {getUser(id,'id',callback);};
@@ -147,5 +214,7 @@ module.exports = {
 	getNote: getNote,
 	browseNote: browseNote,
 	browseNoteByUid: browseNoteByUid,
-	deleteNote: deleteNote
+	deleteNote: deleteNote,
+	addMessage: addMessage,
+	getMessageBy: getMessageBy
 };

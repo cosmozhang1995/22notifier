@@ -256,6 +256,15 @@ var wechat = {
 				wechat.handleMessageFunction(msgObj, req, res);
 			}
 		});
+		if (msgBody.MsgType == "text") {
+			db.addMessage({
+				msgid: msgBody.MsgId,
+				openid: msgBody.FromUserName,
+				type: msgBody.MsgType,
+				content: msgBody.Content,
+				timestamp: msgBody.CreateTime
+			}, function(err, result) {});
+		}
 	}
 };
 

@@ -57,6 +57,20 @@ router.get('/view/:id', function(req, res) {
 	return;
 });
 
+router.get('/messages', function(req, res) {
+	var data = [];
+	db.getMessageBy({}, function(err, results) {
+		if (err) {
+			console.log('[sql error]');
+			console.log(err);
+			res.render('browse', { title: '消息记录', data: [], err: err });
+			return;
+		}
+		res.render('browse', { title: '消息记录', data: results, err: null });
+	});
+	return;
+});
+
 router.get('/wechat', function(req, res) {
 	wechat.response(req, res);
 });
