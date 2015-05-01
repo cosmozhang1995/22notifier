@@ -1,0 +1,12 @@
+.message-list {
+	li {
+		list-style-type: none;
+		display: block;
+		padding: 10px;
+		border-bottom: 1px #eeeeee solid;
+		font-size: 12px;
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+}

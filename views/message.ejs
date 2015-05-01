@@ -1,0 +1,24 @@
+<link rel="stylesheet" type="text/css" href="/stylesheets/pages/page-message.css">
+<% if (err) { %>
+<div class="alert alert-error">
+	<h3>发生错误！</h3>
+	<p><%= err %></p>
+</div>
+<% } else { %>
+<ul class="message-list">
+	<% data.forEach(function(item) { %>
+	<li>
+		<%= item.content %>
+	</li>
+	<% }) %>
+</ul>
+<!-- <div class="btn-group">
+	<a href="javascript;:" class="nav-prev">上一页</a>
+	<a href="javascript;:" class="nav-prev">上一页</a>
+</div> -->
+<div class="btn-more">更多</div>
+<script type="text/javascript">
+messageData = JSON.parse(HTMLDecode("<%= JSON.stringify(data) %>"));
+</script>
+<!-- <script type="text/javascript" src="/javascripts/pages/page-message.js"></script> -->
+<% } %>
