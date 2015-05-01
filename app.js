@@ -24,6 +24,18 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// If in develop use no cache
+// if (app.get('env') === 'development') {
+//     app.set('view cache', false);
+//     app.set('etag', false);
+//     app.use(function(req, res, next) {
+//         res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+//         res.header("Pragma", "no-cache");
+//         res.header("Expires", 0);
+//         next();
+//     });
+// }
+
 app.use('/', routes);
 app.use('/api', api);
 app.use('/users', users);
@@ -43,6 +55,7 @@ if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
+            title: 'Error',
             message: err.message,
             error: err
         });
@@ -54,10 +67,10 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
+        title: 'Error',
         message: err.message,
         error: {}
     });
 });
-
 
 module.exports = app;

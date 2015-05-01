@@ -4,10 +4,12 @@ var app = require('../app');
 var commander = require('commander');
 commander.version('0.0.0')
 	.option('-p --port <n>', 'Specify the port', parseInt)
+	.option('-e --env <n>', 'Specify the environment')
 	.parse(process.argv);
 
 console.log('start server');
 
+app.set('env', commander.env || "production")
 // app.set('port', process.env.PORT || 3000);
 app.set('port', commander.port || 3000);
 

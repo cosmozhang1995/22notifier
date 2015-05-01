@@ -5,6 +5,8 @@ var wechat = require('../util/wechat');
 var db = require('../util/database-util');
 var getBody = require('raw-body');
 
+var app = require('../app.js');
+
 /* GET home page. */
 router.get('/', function(req, res) {
 	res.render('index', { title: 'Express' });
@@ -63,10 +65,10 @@ router.get('/messages', function(req, res) {
 		if (err) {
 			console.log('[sql error]');
 			console.log(err);
-			res.render('browse', { title: '消息记录', data: [], err: err });
+			res.render('message', { title: '消息记录', data: [], err: err });
 			return;
 		}
-		res.render('browse', { title: '消息记录', data: results, err: null });
+		res.render('message', { title: '消息记录', data: results, err: null });
 	});
 	return;
 });
